@@ -33,6 +33,5 @@ def track(tracking_id):
     logging.info(f"[{event_type}] Tracking ID: {tracking_id}, IP: {ip}, UA: {ua}")
     return send_file("pixel.png", mimetype="image/png")
 
-
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
