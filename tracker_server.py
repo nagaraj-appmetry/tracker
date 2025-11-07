@@ -16,10 +16,10 @@ logging.basicConfig(
 )
 
 @app.route("/track/<tracking_id>.png")
-def track_open(tracking_id):
-    ip = request.remote_addr
-    ua = request.headers.get("User-Agent", "")
-    logging.info(f"Email opened — Tracking ID: {tracking_id}, IP: {request.remote_addr}")
+def track(tracking_id):
+    ip = request.headers.get("X-Forwarded-For", request.remote_addr)
+    ua = request.headers.get("User-Agent", "Unknown")
+    logging.info(f"Email opened — ID: {tracking_id}, IP: {ip}, UA: {ua}")
     return send_file("pixel.png", mimetype="image/png")
 
 if __name__ == "__main__":
